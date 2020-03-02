@@ -1,5 +1,6 @@
 function isCar(car1, car2, car3) {
-    // return 
+    if(...args === true){ console.log("sprawne")}
+    else { console.log("niesprawne")}
 }
 
 console.log(isCar(true, true, true));
