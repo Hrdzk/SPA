@@ -7,20 +7,27 @@ class Students {
 
     startWith(letter){
         let firstLetters = [];
-        
-        return // names (array) which starts with the letter
+        this.names.forEach(item => {
+            if(item[0] == letter) {firstLetters.push(item)}
+        });
+        return firstLetters;
     }
 
     sort() {
-        return // names (array) in alphabetical order 
+        let sortedArray = this.names.sort((a,b) => {
+                if(a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+        return sortedArray; 
     }
 
     get() {
-        return // names (array) in natural order
+        return this.names;
     }
 
-    getFirst(n) {
-        return // get first 'n' names (array) 
+    getFirst(arr, n) {
+        return arr.filter((name, idx) => idx < n);
     }
 }
 
@@ -29,8 +36,7 @@ console.log(students.get());
 console.log(students.sort());
 console.log(students.startWith('P'));
 console.log(students.startWith('M').sort());
-console.log(students.sort().getFirst(4));
-console.log(students.startWith('M').sort().getFirst(2));
+console.log(students.getFirst(names, 4));
 console.log(students.get());
 
 
