@@ -4,10 +4,10 @@
 		<title>Pink Floyd</title>
 		<meta charset="UTF-8">
 	</head>
-	<body>
-		<h1>Another Brick in the Wall</h1>
-		<h3>Pink Floyd</h3>
-		<p>We don't need no education<br>
+	<body ondblclick="bg()" style="height: 100%; width: 100%;">
+		<h1 onclick="addText()">Another Brick in the Wall</h1>
+		<h3 onclick="revealText()">Pink Floyd</h3>
+		<p onclick="italics()" oncopy="copyAlert()">We don't need no education<br>
 		We don't need no thought control<br>
 		No dark sarcasm in the classroom<br>
 		Teachers leave them kids alone<br>
@@ -15,13 +15,36 @@
 		All in all it's just another brick in the wall<br>
 		All in all you're just another brick in the wall</p>
 		
-		<p style="visibility: hidden;">Pink Floyd were an English rock band formed in London.<br>
+		<p style="visibility: hidden;" onclick="pic()">Pink Floyd were an English rock band formed in London.<br>
 		They achieved international acclaim with their progressive<br>
 		and psychedelic music.</p>
 		
 		<script>
-			// a JavaScript code here ...
+			const addText = () => {
+				document.getElementsByTagName("h1")["0"].innerHTML = 'Another Brick in the Wall (Part 2)'
+			}
 			
+			const revealText = () => {
+				document.getElementsByTagName("p")["1"].style.visibility = 'visible'
+			}
+
+			const italics = () => {
+				document.getElementsByTagName("p")["0"].style.fontStyle = 'italic'
+			}
+
+			const bg = () => {
+				document.body.style.backgroundColor = "yellow"
+			}
+
+			const copyAlert = () => {
+				alert('Copyrighted! Abort!')
+			}
+
+			const pic = () => {
+				let image = document.createElement("img");
+				image.setAttribute('src', 'https://i.pinimg.com/originals/66/16/28/66162867ecb34aa26370f046348d651a.png')
+				document.body.appendChild(image)
+			}
 		</script>
 	</body>
 </html>
