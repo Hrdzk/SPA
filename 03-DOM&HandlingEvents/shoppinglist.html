@@ -4,6 +4,8 @@
 <head>
     <title>Shopping List</title>
     <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -14,13 +16,14 @@
     </p>
     <h3>List of items</h3>
     <ol id='ol'>
-        <li>cooking oil</li>
-        <li>breakfast cereal</li>
-        <li>bread</li>
+        <li ondblclick="deleteItem(this)">cooking oil</li>
+        <li ondblclick="deleteItem(this)">breakfast cereal</li>
+        <li ondblclick="deleteItem(this)">bread</li>
     </ol>
 
     <script>
-    	const shoppingList = () => {
+
+        const shoppingList = () => {
             let info = document.getElementById('text').value
             let ol = document.getElementById('ol')
             let li = document.createElement("li")
@@ -28,7 +31,16 @@
 
             li.appendChild(val)
             ol.appendChild(li)
+
+            $("li").on("dblclick", function () {
+                $(this).remove()
+            });
         }
+
+        const deleteItem = (item) => {
+            $(this).remove()
+        }
+
 
     </script>
 </body>

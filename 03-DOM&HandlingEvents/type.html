@@ -7,6 +7,7 @@
 	<body>
 		<h1>How fast are your fingers?</h1>
 		<h3>You have 30 seconds. Just start typing...</h3>
+		<p id="timer"></p>
 		<p>Nam strzelać nie kazano. - Wstąpiłem na działo<br>
 		I spójrzałem na pole; dwieście armat grzmiało.<br>
 		Artyleryi ruskiej ciągną się szeregi,<br>
@@ -20,11 +21,26 @@
 		Przeciw nim sterczy biała, wąska, zaostrzona,<br>
 		Jak głaz bodzący morze, reduta Ordona.</p>
 		
-		<textarea rows="15" cols="50"></textarea><br>
-		
+		<textarea rows="15" cols="50" onkeydown="timer()"></textarea><br>
+		<p id="result"></p>
 		<script>
-			// a JavaScript code here ...
-			
+			const timer = () => {
+				document.getElementsByTagName("textarea")["0"].removeAttribute("onkeydown")
+				let timeleft = 30
+				let time = setInterval( function() {
+					if(timeleft <= 0) { 	
+						document.getElementById("timer").innerHTML = "Koniec Czasu!"
+
+						let words = document.getElementsByTagName("textarea")["0"].value.trim().split(' ')
+
+						clearInterval(time)
+
+						document.getElementById("result").innerHTML = "<b>Liczba wyrazów: </b>" + words.length
+					}
+					document.getElementById("timer").innerHTML = "<b>Twój czas: </b>" + timeleft
+					timeleft -= 1
+				}, 1000)
+			}
 		</script>
 		
 	</body>

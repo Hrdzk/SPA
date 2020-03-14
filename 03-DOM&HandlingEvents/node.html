@@ -3,11 +3,41 @@
 	<head>
 		<title>Create DOM elements</title>
 		<meta charset="UTF-8">
+		<style>
+			table, tr, td {
+				border: 1px solid black;
+				border-collapse: collapse;
+				text-align: center;
+			}
+		</style>
 	</head>
 	<body>
+		<div id="bigtable">
+			<button onclick="table(2, 2)">Click!</button>
+		</div>
+
 		<script>
-			// a JavaScript code here ...
-			
+			const table = (col, row) => {
+				let bigtable = document.getElementById("bigtable")
+				let table = document.createElement("table")
+				table.style.width = '300px'
+
+
+				let tableBody = document.createElement('tbody')
+				for (let i = 0; i < col; i++){
+					let tr = document.createElement('tr')
+					for( let j = 0; j < row ;  j++){
+						let td = document.createElement('td')
+						td.appendChild(document.createTextNode(i + j + 1))
+						tr.appendChild(td)
+					}
+					tableBody.appendChild(tr)
+				}
+				table.appendChild(tableBody)
+				bigtable.appendChild(table)
+			}
+
+
 		</script>
 	</body>
 </html>
