@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Currencies</title>
+    <meta charset="UTF-8">
+</head>
+
+<body onload="connect()">
+    <h1>Currencies</h1>
+    <p id="eur"></p>
+    <p id="usd"></p>
+    <p id="gbp"></p>
+
+    <script>
+
+        let connect = () => {
+            let currencies = ['eur', 'usd', 'gbp']
+
+            currencies.forEach((currency) => {
+                let link = `http://api.nbp.pl/api/exchangerates/rates/a/${currency}?format=json`
+
+                let req = new XMLHttpRequest()
+
+                req.open('GET', link, true)
+                req.onreadystatechange = function () {
+                    if (req.readyState == XMLHttpRequest.DONE && req.status == 200) {
+                        let obj = JSON.parse(req.responseText)
+                        document.getElementById(`${currency}`).innerHTML = `Kurs ${currency.toUpperCase()}: ` + obj.rates[0].mid
+                    }
+                }
+                req.send()
+            })
+
+        }
+
+    </script>
+
+</body>
+
+</html>
