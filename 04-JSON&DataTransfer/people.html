@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>People</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <h1>People database</h1>
+    <input type="button" value="Click!" onclick="show()">
+    <ol id="ppl">
+    </ol>
+    <script>
+
+        let show = () => {
+
+            let req = new XMLHttpRequest()
+            let json = "./people.json"
+
+            req.open("GET", json, true)
+            req.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    let obj = JSON.parse(this.responseText)
+                   
+                    obj.forEach((num, index) => {
+                        let ol = document.getElementById('ppl')
+                        let li = document.createElement("li")
+                        let info = `${obj[index].name} ${obj[index].surname.toUpperCase()}, ${obj[index].country}`
+                        let val = document.createTextNode(info)
+
+                        li.appendChild(val)
+                        ol.appendChild(li)
+                    })
+
+                }
+
+            }
+
+            req.send()
+        }
+
+    </script>
+
+</body>
+
+</html>

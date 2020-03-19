@@ -11,11 +11,12 @@
     <p id="eur"></p>
     <p id="usd"></p>
     <p id="gbp"></p>
+    <p id="chf"></p>
 
     <script>
 
         let connect = () => {
-            let currencies = ['eur', 'usd', 'gbp']
+            let currencies = ['eur', 'usd', 'gbp', 'chf']
 
             currencies.forEach((currency) => {
                 let link = `http://api.nbp.pl/api/exchangerates/rates/a/${currency}?format=json`
