@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Gold Prices</title>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.com/libraries/Chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+</head>
+
+<body onload="getPrices()">
+    <h1>Gold Prices</h1>
+    <canvas id="chart" width="400" height="400" onload="makeChart(goldPrices)"></canvas>
+
+    <script>
+
+        const buildChart = (labels, values, title) => {
+            var data = {
+                labels: labels,
+                datasets: [{
+                    label: title,
+                    data: values
+                }]
+            }
+
+            var ctx = document.getElementById("chart").getContext('2d')
+            var newChart = new Chart(ctx, {
+                type: 'line',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        xAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Data'
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'PLN'
+                            }
+                        }]
+                    }
+                }
+            })
+
+            return newChart
+        }
+
+        let req = new XMLHttpRequest()
+
+        let link = `http://api.nbp.pl/api/cenyzlota/last/10?format=json`
+
+        req.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var json = JSON.parse(this.response)
+
+                var labels = json.map( label => {
+                    return label.data
+                })
+
+                var values = json.map( label => {
+                    return label.cena
+                })
+                buildChart(labels, values, "Ceny złota")
+            }
+        }
+        
+        req.open('GET', link, true)
+        req.send()
+
+
+
+
+    </script>
+
+</body>
+
+</html>
