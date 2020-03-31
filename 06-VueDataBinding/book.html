@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app" style="width: 300px">
+            Tytuł: <input type="text" v-model="book_title"> <hr>
+            Imię Autora: <input type="text" v-model="author_name"> <hr>
+            Nazwisko Autora: <input type="text" v-model="author_surname">
+            <button @click="send_data">Zapisz</button>
+        </div>
+        <script>
+            var app = new Vue({
+                el: "#app",
+                data: {
+                    book_title: '',
+                    author_name: '',
+                    author_surname: ''
+                },
+                methods: {
+                    send_data() {
+                        console.log(this.book_title + ", " + this.author_name, this.author_surname)
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

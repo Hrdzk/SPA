@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <h3>{{ message }}</h3>
+
+    <input type="text" v-model="todo">
+    <button @click="add">Add</button>
+
+    <ol>
+      <li v-for="(item, index) in todos" v-on:dblclick="todos.splice(index, 1)">{{ item }}</li>
+    </ol>
+  </div>
+
+
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'To do!',
+        todo: '',
+        todos: []
+      },
+      methods: {
+        add() {
+          if (this.todo != null && this.todo.length != 0) {
+            this.todos.push(this.todo)
+            this.todo = ''
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

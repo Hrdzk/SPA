@@ -1,0 +1,50 @@
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        #app {
+            margin: 10px;
+            clear: both;
+            overflow: hidden;
+            width: 300px;
+        }
+
+        input {
+            float: right;
+            width: 20%;
+        }
+
+        label {
+            float: left;
+            width: 75%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <label for="pp">Pracownia Programowania 5</label>
+        <input type="checkbox" id="pp" value="pp" v-model="courses"><br>
+        <label for="pyth">Techniki Programowania w Pythonie</label>
+        <input type="checkbox" id="pyth" value="pyth" v-model="courses"><br>
+        <label for="md">Modelowanie Danych</label>
+        <input type="checkbox" id="md" value="md" v-model="courses"><br>
+        <label for="spa">SPA</label>
+        <input type="checkbox" id="spa" value="spa" v-model="courses"><br>
+        <label for="psm">PSM</label>
+        <input type="checkbox" id="psm" value="psm" v-model="courses"><br>
+        <span>Checked Courses: {{courses.length}}</span>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                courses: []
+            }
+        })
+
+    </script>
+</body>
+
+</html>
