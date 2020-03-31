@@ -1,0 +1,84 @@
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        #app {
+            margin: 10px;
+            clear: both;
+            overflow: hidden;
+            width: 300px;
+        }
+
+        input {
+            float: right;
+            width: 40%;
+        }
+
+        label {
+            float: left;
+            width: 55%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" style="width: 300px;">
+        <h3>CV app</h3>
+        Imię: <input type="text" v-model="person.name">
+        <hr>
+        Nazwisko: <input type="text" v-model="person.surname">
+        <hr>
+        <label for="sex">M</label><input type="radio" v-model="person.sex" value="M"><br>
+        <label for="sex">K</label><input type="radio" v-model="person.sex" value="K"><br>
+        <hr>
+        <select v-model="person.edu">
+            <option v-for="edu in person.education">{{ edu }}</option>
+        </select>
+        <hr>
+        <label for="ok">Obsługa Komputera</label>
+        <input type="checkbox" id="ok" value="Obsługa Komputera" v-model="person.skills"><br>
+        <label for="pj">Prawo Jazdy</label>
+        <input type="checkbox" id="pj" value="Prawo Jazdy" v-model="person.skills"><br>
+        <label for="krea">Kreatywność</label>
+        <input type="checkbox" id="krea" value="Kreatywność" v-model="person.skills"><br>
+        <label for="pwz">Praca w Zespole</label>
+        <input type="checkbox" id="pwz" value="pwz" v-model="person.skills"><br>
+        <button @click="persist">Dodaj!</button>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                person: {
+                    name: '',
+                    surname: '',
+                    sex: '',
+                    edu: '',
+                    education: [
+                        'brak',
+                        'podstawowe',
+                        'średnie',
+                        'wysokie'
+                    ],
+                    skills: []
+                }
+            },
+            mounted() {
+                let temp = JSON.parse(localStorage.getItem('person'))
+                if (temp.name) this.person.name = temp.name
+                if (temp.surname) this.person.surname = temp.surname
+                if (temp.sex) this.person.sex = temp.sex
+                if (temp.edu) this.person.edu = temp.edu
+                if (temp.skills) this.person.skills = temp.skills
+            },
+            methods: {
+                persist() {
+                    localStorage.setItem('person', JSON.stringify(this.person))
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
